@@ -1,6 +1,14 @@
 <div class="col-lg-5">
   <h2 class="h1-strong">{{title}}</h2>
-  <form #registerForm="ngForm" (ngSubmit)="onSubmit()" class="col-lg-12">
+  <div class="alert alert-success" *ngIf="estatus == 'success' " >
+    <a [routerLink]="['login']">Idetificate aqui</a>
+    Registro completado correctamente
+  </div>
+  <div class="alert alert-danger" *ngIf="estatus == 'error' " >
+      El registro no ha podido completarse,quizas tu email o nick ya este en uso,
+      intentalo de nuevo con otros datos
+    </div>
+  <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-lg-12">
     <p>
       <label for="">Nombre</label>
       <input type="text" name="name" #name="ngModel" [(ngModel)]="user.name"
@@ -27,7 +35,7 @@
     </p>
     <p>
       <label for="">Contraseña</label>
-      <input type="text" name="password" #password="ngModel" [(ngModel)]="user.password"
+      <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password"
       class="form-control" required>
       <span *ngIf="!password.valid &&  password.touched">La  contraseña es obligatoria !!</span>
     </p>

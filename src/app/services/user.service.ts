@@ -12,8 +12,10 @@ export class UserService{
     this.url = GLOBAL.url;
   }
 
-  register(to_user_register){
-    console.log(to_user_register);
-    console.log(this.url);
+  register(user:User){
+    let params = JSON.stringify(user);
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    //regresa los datos
+    return this._http.post(this.url+'register',params,{headers:headers});
   }
 }

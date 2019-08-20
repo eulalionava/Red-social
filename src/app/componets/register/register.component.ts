@@ -11,6 +11,7 @@ import { UserService } from '../../services/user.service';
 export class RegisterComponent implements OnInit {
   public title:string;
   public user:User;
+  public estatus:string;
 
   constructor(
     private _route:ActivatedRoute,
@@ -24,8 +25,21 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(){
-    this._service.register(this.user);
+  onSubmit(form){
+    //llama al servicio
+    this._service.register(this.user).subscribe(
+      response=>{
+        if(response['user'] && response['user']._id){
+          this.estatus = 'success';
+          form.reset();
+        }else{
+          this.estatus ='error';
+        }
+      },
+      error=>{
+        console.log(<any>error);
+      }
+    )
   }
 
 }
