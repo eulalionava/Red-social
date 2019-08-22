@@ -1,5 +1,13 @@
 <div class="col-lg-5">
   <h2 class="h1-strong">{{title}}</h2>
+
+  <div class="alert alert-success" *ngIf="status == 'success' " >
+    Te has identificado correctamente
+  </div>
+  <div class="alert alert-danger" *ngIf="status == 'error' " >
+    No te has identificado correctamente !!
+  </div>
+
   <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-lg-12">
     <p>
       <label for="">Correo Electronico</label>

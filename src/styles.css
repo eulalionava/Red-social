@@ -8,6 +8,7 @@
   padding-bottom: 15px;
   border-bottom: 1px solid #eee;
 }
+
 .navigation{
   padding: 0px !important;
 }
@@ -17,6 +18,9 @@
 }
 .navigation .navbar *{
   color: white;
+}
+.navigation .navbar a:hover{
+  background: #cc1717 !important
 }
 .menu-horizontal ul li{
   margin-right: 10px !important;

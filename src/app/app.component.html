@@ -1,35 +1,45 @@
 <div class="navigation col-lg-12">
-    <nav class="navbar navbar-light" style="background-color: #de3038;">
-      <!-- Navbar content -->
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #de3038;">
+          <a class="navbar-brand" href="#">{{title}}</a>
 
-        <div class="menu-horizontal">
-          <ul class="nav navbar">
-            <li>
-                <a href="#" class="navbar-brand">{{title}}</a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="fas fa-home"></span>
-                Inicio
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="fas fa-th-list"></span>
-                Timeline
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="fas fa-user"></span>
-                Gente
-              </a>
-            </li>
-          </ul>
-        </div>
-
-      </div>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0" *ngIf="identity">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">
+                  <span class="fas fa-home"></span>
+                  Inicio
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span class="fas fa-th-list"></span>
+                  Timeline
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#">
+                  <span class="fas fa-user"></span>
+                  Gente
+                </a>
+              </li>
+            </ul>
+            <form class="form-inline my-lg-0">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0" *ngIf="!identity">
+                  <li>
+                    <a [routerLink]="['/login']" [routerLinkActive]="['active']">
+                      <span class="fas fa-user"></span>
+                      Login
+                    </a>
+                  </li>
+                  <li>
+                  <a [routerLink]="['/registro']" [routerLinkActive]="['active']">
+                    <span class="fas fa-th-list"></span>
+                    Registro
+                    </a>
+                  </li>
+                  </ul>
+            </form>
+          </div>
     </nav>
 </div>
 

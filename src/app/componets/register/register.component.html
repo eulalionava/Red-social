@@ -5,9 +5,9 @@
     Registro completado correctamente
   </div>
   <div class="alert alert-danger" *ngIf="estatus == 'error' " >
-      El registro no ha podido completarse,quizas tu email o nick ya este en uso,
-      intentalo de nuevo con otros datos
-    </div>
+    El registro no ha podido completarse,quizas tu email o nick ya este en uso,
+    intentalo de nuevo con otros datos
+  </div>
   <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-lg-12">
     <p>
       <label for="">Nombre</label>
