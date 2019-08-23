@@ -5,7 +5,7 @@
           <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0" *ngIf="identity">
               <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']">
                   <span class="fas fa-home"></span>
                   Inicio
                 </a>
@@ -24,7 +24,7 @@
               </li>
             </ul>
             <form class="form-inline my-lg-0">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0" *ngIf="!identity">
+                <ul class="nav navbar navbar-nav navbar-right" *ngIf="!identity">
                   <li>
                     <a [routerLink]="['/login']" [routerLinkActive]="['active']">
                       <span class="fas fa-user"></span>
@@ -39,6 +39,51 @@
                   </li>
                   </ul>
             </form>
+            <ul class="nav navbar-nav navbar-right" *ngIf="identity">
+              <li class="avatar">
+                <!-- Cargar imagen de usuario-->
+              </li>
+              <li>
+                <!-- <a href="#" class="dropdown-toggle" type="button" data-toggle="menu">
+                  {{identity.name}} <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu" id="menu" *ngIf="identity">
+                  <li>
+                    <a href="#">
+                      <span class="fas fa-th-list"></span>
+                      Mi perfil
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span class="fas fa-th-list"></span>
+                      Mi datos
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span class="fas fa-th-list"></span>
+                      Cerrar sesion
+                    </a>
+                  </li>
+                </ul> -->
+
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                    Cuenta <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Mi Cuenta</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Cambiar Email</a></li>
+                    <li><a href="#">Cambiar Password</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </li>
+            </ul>
           </div>
     </nav>
 </div>

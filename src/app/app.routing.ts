@@ -4,9 +4,11 @@ import { Routes,RouterModule } from '@angular/router';
 //componentes
 import { LoginComponent } from './componets/login/login.component';
 import { RegisterComponent } from './componets/register/register.component';
+import { HomeComponent } from './componets/home/home.component';
 
 const appRoutes:Routes = [
-  {path:'',component:LoginComponent},
+  {path:'',component:HomeComponent},
+  {path:'home',component:HomeComponent},
   {path:'login',component:LoginComponent},
   {path:'registro',component:RegisterComponent}
 ]
