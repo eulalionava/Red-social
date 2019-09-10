@@ -16,12 +16,20 @@
 .navigation .navbar{
   border-radius: 0px !important;
 }
-.navigation .navbar *{
+.navigation .navbar{
   color: white;
 }
-.navigation .navbar a:hover{
-  background: #cc1717 !important
+
+.pointer{
+  cursor: pointer;
 }
+.navigation .navbar #menuUsuario ul li:hover{
+  background: #ebe4e4 !important;
+}
+.navigation .navbar #menuUsuario ul li a{
+  text-decoration: none;
+}
+
 .menu-horizontal ul li{
   margin-right: 10px !important;
 }
@@ -29,4 +37,40 @@
   margin: 25px;
   border-radius: 5px;
   text-align: center;
+}
+.navigation .avatar{
+  width: 35px;
+  height: 35px;
+  border-radius: 100px;
+  overflow: hidden;
+  margin-left: 2px;
+}
+.navigation .avatar img{
+  height: auto;
+  width: 35px;
+}
+
+.item-user .image-user{
+  width: 75px;
+  height: 75px;
+  border-radius: 100px;
+  overflow: hidden;
+  margin-left: 15px;
+}
+
+.item-user .image-user img{
+  width: 80px;
+}
+
+.item-user .user-name{
+  margin-top: 10px;
+}
+
+.item-user .user-name #nickname{
+  color: #969393;
+}
+
+.item-user .user-name .name-surname a{
+  color: #444;
+  font-weight: bold;
 }

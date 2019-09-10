@@ -1,5 +1,7 @@
 import { Component,OnInit,DoCheck } from '@angular/core';
+import { Router } from '@angular/router';
 import {UserService } from './services/user.service';
+import { GLOBAL } from './services/global';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +12,14 @@ import {UserService } from './services/user.service';
 export class AppComponent implements OnInit,DoCheck{
   public title:string;
   public identity;
+  public url:string;
 
   constructor(
-    private _service:UserService
+    private _service:UserService,
+    private _router:Router
   ){
     this.title = 'NGSOCIAL'
+    this.url=GLOBAL.url;
   }
 
   ngOnInit(){
@@ -25,5 +30,11 @@ export class AppComponent implements OnInit,DoCheck{
   //Monitorea ls cambios
   ngDoCheck(){
     this.identity = this._service.getidentity();
+  }
+
+  logout(){
+    localStorage.clear();
+    this.identity = null;
+    this._router.navigate(['/']);
   }
 }
