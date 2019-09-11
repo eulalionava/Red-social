@@ -1,3 +1,4 @@
+<div class="row">
 <div class="col-lg-8">
   <h1 class="h1-strong">{{title}}</h1>
   <div class="people">
@@ -25,14 +26,16 @@
               </div>
             </div>
             <!-- SEGUIR/DEJAR DE SEGUIR -->
-            <div>
-              <button class="btn btn-success" *ngIf="follows.indexOf(user._id) < 0">
+            <div *ngIf="user._id != identity._id">
+              <button class="btn btn-success" *ngIf="follows.indexOf(user._id) < 0"
+              (click)="followUser(user._id)">
                   <i class="fa fa-plus-circle"></i>
                 Seguir
               </button>
               <button class="btn btn-primary" *ngIf="follows.indexOf(user._id) >= 0"
                 (mouseenter)="mouseEnter(user._id)"
                 (mouseleave)="mouseLeave(user._id)"
+                (click)="unfollowUser(user._id)"
                 [class.btn-danger]="user._id == followUserOver">
                 <span *ngIf="user._id == followUserOver; else following">
                   <i class="fa fa-minus-circle"></i>Dejar de seguir
@@ -55,4 +58,11 @@
     </ul>
 
   </div>
+
+</div>
+
+<div class="col-lg-4">
+  <app-sidebar></app-sidebar>
+</div>
+
 </div>

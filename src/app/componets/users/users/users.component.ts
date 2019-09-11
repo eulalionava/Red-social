@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router,Params } from '@angular/router';
 import { User } from '../../../models/user';
+import { Follow } from '../../../models/follow';
 import { UserService } from '../../../services/user.service';
+import { FollowService } from '../../../services/follow.service';
 import { GLOBAL } from '../../../services/global';
 @Component({
   selector: 'app-users',
-  templateUrl: './users.component.html'
+  templateUrl: './users.component.html',
+  providers:[UserService,FollowService]
 })
 export class UsersComponent implements OnInit {
   public title:string;
@@ -24,7 +27,8 @@ export class UsersComponent implements OnInit {
   constructor(
     private _route:ActivatedRoute,
     private _router:Router,
-    private _service:UserService
+    private _service:UserService,
+    private _followService:FollowService
   ) {
     this.title = "Gente";
     this.url = GLOBAL.url;
@@ -101,6 +105,51 @@ export class UsersComponent implements OnInit {
 
   mouseLeave(user_id){
     this.followUserOver = 0;
+  }
+
+  //Siguiendo un usuario
+  followUser(followed){
+    //instancia
+    var follow = new Follow('',this.identity._id,followed);
+    this._followService.addFollow(this.token,follow).subscribe(
+      response=>{
+        if(!response['follow']){
+          this.status = 'error';
+        }else{
+          this.status = 'success';
+          this.follows.push(followed);
+        }
+      },
+      error=>{
+        var errorMessage = <any>error;
+        console.log(errorMessage);
+        if(errorMessage != null){
+          this.status = 'error';
+        }
+
+      }
+    )
+  }
+
+  //Dejar de seguir un usuario
+  unfollowUser(followed){
+    this._followService.deleteFollow(this.token,followed).subscribe(
+      response=>{
+        //buscar el elemento dentro del array
+        var buscar = this.follows.indexOf(followed);
+        if( buscar != -1){
+          //borra elemento del array
+          this.follows.splice(buscar,1);
+        }
+      },
+      error=>{
+        var errorMessage = <any>error;
+        console.log(errorMessage);
+        if(errorMessage != null){
+          this.status = 'error';
+        }
+      }
+    )
   }
 
 }

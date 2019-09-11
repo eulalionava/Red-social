@@ -1,0 +1,55 @@
+<div>
+  <h1 class="h1-strong">Hola, {{identity.name}}</h1>
+</div>
+<div id="user-card" class="card">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="avatar">
+        <img src="{{url+'get-image-user/'+identity.image}}" alt="imagen" *ngIf="identity.image">
+        <img src="../../../assets/users.png" alt="imagen" *ngIf="!identity.image">
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="name-surname pull-left">
+        <b><a href="#">{{identity.name + ' ' + identity.surname}}</a></b>
+        <b><p>{{identity.nick}}</p></b>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats" *ngIf="stats">
+    <div class="following-data">
+      <a href="#">
+        <span class="lavel-stats">
+          Siguiendo
+        </span>
+        <span class="number-stats">
+          {{stats.following}}
+        </span>
+      </a>
+    </div>
+
+    <div class="following-data">
+      <a href="#">
+        <span class="lavel-stats">
+          Seguidores
+        </span>
+        <span class="number-stats">
+          {{stats.followed}}
+        </span>
+      </a>
+    </div>
+
+    <div class="following-data">
+      <a href="#">
+        <span class="lavel-stats">
+          Publicaciones
+        </span>
+        <span class="number-stats">
+          {{stats.publications}}
+        </span>
+      </a>
+    </div>
+
+  </div>
+</div>
