@@ -79,8 +79,7 @@
 /* SIDEBAR */
 
 #user-card{
-  /* padding-top: 25px; */
-  /* widows: 80%; */
+  padding-top: 25px;
 }
 
 #user-card .avatar{
@@ -94,4 +93,45 @@
 #user-card .avatar img{
   width: 100%;
   height: 100%;
+}
+
+#user-card .name-surname .nickname{
+  color: #969393;
+}
+
+#user-card .label-stats,
+#user-card .number-stats{
+  display: block;
+  text-align: center;
+}
+#user-card .label-stats{
+  font-weight: bold;
+  color: #555;
+}
+
+#user-card .number-stats{
+  font-weight: bold;
+  color:green;
+}
+
+#user-card .stats a:hover{
+  text-decoration: none;
+}
+
+#user-card .stats a:hover .number-stats{
+  color: #cc1717;
+}
+
+#user-card .following-data{
+  float: left;
+  margin-left: 25px;
+  margin-top: 15px;
+  border-right: 2px solid #ccc;
+}
+#user-card .following-data:firs-child{
+  padding-left: 5px;
+}
+
+#user-card .following-data:last-child{
+  border: none;
 }
