@@ -51,7 +51,8 @@
 }
 
 /* Gente */
-.item-user .image-user{
+.item-user .image-user,
+.item_publication .image-user{
   width: 75px;
   height: 75px;
   border-radius: 100px;
@@ -59,7 +60,8 @@
   margin-left: 15px;
 }
 
-.item-user .image-user img{
+.item-user .image-user img,
+.item_publication .image-user img{
   width: 80px;
 }
 
@@ -134,4 +136,14 @@
 
 #user-card .following-data:last-child{
   border: none;
+}
+
+/*TIMELINE*/
+
+/* #publications{
+  min-height: 500px;
+} */
+
+#publications .date{
+  color: grey;
 }

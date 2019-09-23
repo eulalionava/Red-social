@@ -1,3 +1,50 @@
-<p>
-  timeline works!
-</p>
+<div class="row">
+  <div class="col-lg-8">
+    <h1 class="h1-strong">
+      {{title}}
+      <button class="btn btn-succes btn-sm" (click)="refresh($event)">Mostrar nuevas</button>
+    </h1>
+
+    <div id="publications">
+      <div *ngFor="let publication of publications" class="item_publication">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+
+              <div class="image-user pull-left">
+                <a href="#">
+                  <img src="{{url + 'get-image-user/'+publication.user.image}}" alt="Imagen" *ngIf="publication.user.image">
+                  <img src="../../../../assets/users.png" alt="Imagen" *ngIf="!publication.user.image">
+                </a>
+              </div>
+              <div class="col-lg-6" style="padding-top: 10px;">
+                <span>{{publication.user.name +' '+ publication.user.surname}}</span>
+                &nbsp;| &nbsp;
+                <span class="date">{{(publication.created_at | amFromUnix) |amLocale:'es' |amTimeAgo}}</span>
+                <h6 class="publication-text">{{publication.text}}</h6>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+
+      <div class="col-lg-12 text-center">
+        <p>
+          <button class="btn btn-success" (click)="viewMore()" *ngIf="!noMore">
+            Ver más prublicaciones
+          </button>
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-lg-4" style="float: right;">
+    <app-sidebar (sended)="refresh($event)"></app-sidebar>
+  </div>
+
+</div>
+<div class="clearfix"></div>
