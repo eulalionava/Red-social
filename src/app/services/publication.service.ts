@@ -28,6 +28,13 @@ export class PublicationService{
     return this._http.get(this.url+'publications/'+page,{headers:headers})
   }
 
+  //Permite obtener las publicaciones por usuario
+  getPublicationsUser(token,user_id,page=1){
+    let headers = new HttpHeaders().set('Content-Type','application/json')
+                                    .set('Authorization',token);
+    return this._http.get(this.url+'publications-user/'+user_id+'/'+page,{headers:headers})
+  }
+
   //Borrar una publicacion
   deletePublication(token,id){
     let headers = new HttpHeaders().set('Content-Type','application/json')

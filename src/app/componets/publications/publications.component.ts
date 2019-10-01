@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router,ActivatedRoute,Params } from '@angular/router';
 import { Publication } from '../../models/publication';
 import { GLOBAL } from '../../services/global';
@@ -8,7 +8,8 @@ import $ from 'jquery';
 
 @Component({
   selector: 'app-publications',
-  templateUrl: './publications.component.html'
+  templateUrl: './publications.component.html',
+  providers:[UserService,PublicationService]
 })
 export class PublicationsComponent implements OnInit {
   public identity;
@@ -21,6 +22,7 @@ export class PublicationsComponent implements OnInit {
   public page;
   public itemsPerPage;
   public publications:Publication[];
+  @Input() user:string;
 
   constructor(
     private _route:ActivatedRoute,
@@ -37,12 +39,12 @@ export class PublicationsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getPublications(this.page);
+    this.getPublications(this.user,this.page);
   }
 
   //Mostrar publicaciones
-  getPublications(page,adding=false){
-    this._publicationService.getPublications(this.token,page).subscribe(
+  getPublications(user,page,adding=false){
+    this._publicationService.getPublicationsUser(this.token,user,page).subscribe(
       response=>{
         if(response['publications']){
           this.total = response['total_items'];
@@ -54,10 +56,16 @@ export class PublicationsComponent implements OnInit {
           }else{
             var arrayA = this.publications;
             var arrayB = response['publications'];
+            //Va concatenando las publicaciones
             this.publications = arrayA.concat(arrayB);
 
+
+            if(this.publications.length === this.total){
+              this.noMore = true;
+            }
+
             //Animacion scroll
-            $("html,body").animate({scrollTop:$("body").prop("scrollHeight")},500);
+            $("html,body").animate({scrollTop:$("html").prop("scrollHeight")},500);
           }
           //mayor al numero de paginas
           if(page > this.pages){
@@ -79,12 +87,12 @@ export class PublicationsComponent implements OnInit {
   //METODO PARA VER MAS
   public noMore = false;
   viewMore(){
-    if(this.publications.length == this.total){
+    this.page += 1;
+    if(this.page == this.total){
       this.noMore = true;
-    }else{
-      this.page += 1;
     }
-    this.getPublications(this.page,true);
+
+    this.getPublications(this.user,this.page,true);
   }
 
 }

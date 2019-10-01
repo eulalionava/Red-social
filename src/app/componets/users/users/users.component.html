@@ -2,7 +2,8 @@
 <div class="col-lg-8">
   <h1 class="h1-strong">{{title}}</h1>
   <div class="people">
-    <!-- LISTA -->
+
+    <!-- LISTADO -->
     <div *ngFor="let user of users" class="item-user">
       <div class="card">
         <div class="card-body">
@@ -18,7 +19,7 @@
             <div class="col-md-7">
               <div class="user-name pull-left">
                 <p class="name-surname">
-                  <a href="#">
+                  <a [routerLink]="['/perfil',user._id]">
                     {{user.name + ' ' + user.surname}}
                   </a>
                 </p>

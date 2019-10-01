@@ -4,11 +4,12 @@ import { UserService } from '../../services/user.service';
 import { GLOBAL } from '../../services/global';
 import { Publication } from '../../models/publication';
 import { PublicationService } from '../../services/publication.service';
+import { UploadService } from '../../services/upload.service';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  providers:[UserService,PublicationService]
+  providers:[UserService,PublicationService,UploadService]
 })
 export class SidebarComponent implements OnInit {
   public identity;
@@ -25,7 +26,8 @@ export class SidebarComponent implements OnInit {
     private _route:ActivatedRoute,
     private _router:Router,
     private _userService:UserService,
-    private _publicationService:PublicationService
+    private _publicationService:PublicationService,
+    private _uploadService:UploadService
   ){
     this.title = 'Mis datos';
     this.identity = this._userService.getidentity();
@@ -44,10 +46,16 @@ export class SidebarComponent implements OnInit {
       response=>{
         if(response['publication']){
           //this.publication = response['publication'];
-          this.status ='success';
-          form.reset();
-          //redirecciona y actualiza la publicacion
-          this._router.navigate(['/timeline']);
+
+          //Subir imagen
+          this._uploadService.makeFileRequest(this.url+'upload-image-pub/'+response['publication']._id,[],this.filesToUpload,this.token,'image')
+              .then((result:any)=>{
+                this.publication.file = result.image;
+                this.status ='success';
+                form.reset();
+                //redirecciona y actualiza la publicacion
+                this._router.navigate(['/timeline']);
+              });
         }else{
           this.status = 'error';
         }
@@ -59,6 +67,12 @@ export class SidebarComponent implements OnInit {
         }
       }
     )
+  }
+
+  //Subir una imagen
+  public filesToUpload:Array<File>;
+  fileChangeEvent(fileInput:any){
+    this.filesToUpload = <Array<File>>fileInput.target.files;
   }
 
   //Output  Generacion de un evento

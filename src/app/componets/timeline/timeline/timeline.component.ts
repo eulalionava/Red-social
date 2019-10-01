@@ -23,6 +23,7 @@ export class TimelineComponent implements OnInit {
   public page;
   public itemsPerPage;
   public publications:Publication[];
+  public showImage;
 
   constructor(
     private _route:ActivatedRoute,
@@ -45,6 +46,7 @@ export class TimelineComponent implements OnInit {
   getPublications(page,adding=false){
     this._publicationService.getPublications(this.token,page).subscribe(
       response=>{
+        console.log(response);
         if(response['publications']){
           this.total = response['total_items'];
           this.pages = response['pages'];
@@ -80,10 +82,9 @@ export class TimelineComponent implements OnInit {
   //METODO PARA VER MAS
   public noMore = false;
   viewMore(){
-    if(this.publications.length == this.total){
+    this.page += 1;
+    if(this.page == this.pages){
       this.noMore = true;
-    }else{
-      this.page += 1;
     }
     this.getPublications(this.page,true);
   }
@@ -91,6 +92,11 @@ export class TimelineComponent implements OnInit {
   //Ejecucion de un evento creado en sidebar.component
   refresh(event){
     this.getPublications(1);
+  }
+
+  //Mostrar una imagen
+  showThisImage(id){
+    this.showImage = id;
   }
 
 }

@@ -18,10 +18,21 @@
                 </a>
               </div>
               <div class="col-lg-6" style="padding-top: 10px;">
-                <span>{{publication.user.name +' '+ publication.user.surname}}</span>
+                <a [routerLink]="['/perfil',publication.user._id]">
+                  {{publication.user.name +' '+ publication.user.surname}}
+                </a>
                 &nbsp;| &nbsp;
                 <span class="date">{{(publication.created_at | amFromUnix) |amLocale:'es' |amTimeAgo}}</span>
                 <h6 class="publication-text">{{publication.text}}</h6>
+              </div>
+              <div class="col-lg-12" *ngIf="publication.file != 'null'">
+                <button class="btn btn-warning" (click)="showThisImage(publication._id)"
+                  [class.btn-danger]="showImage == publication._id" style="float: right">
+                    <span class="fas fa-image"></span>
+                </button>
+              </div>
+              <div class="col-lg-12" *ngIf="publication.file != 'null' && showImage == publication._id">
+                <img src="{{url + 'get-image-pub/'+publication.file}}" class="col-lg-12" alt="Imagen">
               </div>
 
             </div>
@@ -30,7 +41,7 @@
         <br>
       </div>
 
-      <div class="col-lg-12 text-center">
+      <div class="col-lg-12 text-center" *ngIf="publications && publications.length">
         <p>
           <button class="btn btn-success" (click)="viewMore()" *ngIf="!noMore">
             Ver más prublicaciones

@@ -50,7 +50,7 @@
                   </a>
                     <ul class="dropdown-menu" id="menu" *ngIf="identity" style="color: #615858;">
                       <li>
-                        <a href="#">
+                        <a [routerLink]="['/perfil',identity._id]">
                           <span class="fas fa-th-list"></span>
                           Mi perfil
                         </a>

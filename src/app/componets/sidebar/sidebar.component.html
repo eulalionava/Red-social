@@ -12,7 +12,11 @@
     </div>
     <div class="col-lg-6">
       <div class="name-surname">
-        <b><a href="#">{{identity.name + ' ' + identity.surname}}</a></b>
+        <b>
+          <a [routerLink]="['/perfil',identity._id]">
+            {{identity.name + ' ' + identity.surname}}
+          </a>
+        </b>
         <p class="nickname" >{{identity.nick}}</p>
       </div>
     </div>
@@ -76,7 +80,7 @@
     </p>
     <p>
       <label>Sube tu foto</label>
-      <input type="file" placeholder="Subir imagen">
+      <input type="file" placeholder="Subir imagen" (change)="fileChangeEvent($event)">
     </p>
     <input type="submit" value="Enviar" class="btn btn-success" [disabled]="!newPubForm.form.valid">
   </form>
