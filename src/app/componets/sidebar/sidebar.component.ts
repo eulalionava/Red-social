@@ -41,21 +41,31 @@ export class SidebarComponent implements OnInit {
     console.log("sidebar.component cargado");
   }
 
-  onSubmit(form){
+  onSubmit(form,event){
     this._publicationService.addPublication(this.token,this.publication).subscribe(
       response=>{
         if(response['publication']){
           //this.publication = response['publication'];
 
-          //Subir imagen
-          this._uploadService.makeFileRequest(this.url+'upload-image-pub/'+response['publication']._id,[],this.filesToUpload,this.token,'image')
-              .then((result:any)=>{
+          //verifica si se sube alguna imagen
+          if(this.filesToUpload && this.filesToUpload.length){
+            //Subir imagen
+            this._uploadService.makeFileRequest(this.url+'upload-image-pub/'+response['publication']._id,[],this.filesToUpload,this.token,'image')
+                .then((result:any)=>{
                 this.publication.file = result.image;
                 this.status ='success';
                 form.reset();
                 //redirecciona y actualiza la publicacion
                 this._router.navigate(['/timeline']);
-              });
+                this.sended.emit({send:'true'});
+                });
+          }else{
+                this.status ='success';
+                form.reset();
+                //redirecciona y actualiza la publicacion
+                this._router.navigate(['/timeline']);
+                this.sended.emit({send:'true'});
+          }
         }else{
           this.status = 'error';
         }

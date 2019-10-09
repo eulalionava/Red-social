@@ -46,7 +46,6 @@ export class TimelineComponent implements OnInit {
   getPublications(page,adding=false){
     this._publicationService.getPublications(this.token,page).subscribe(
       response=>{
-        console.log(response);
         if(response['publications']){
           this.total = response['total_items'];
           this.pages = response['pages'];
@@ -90,13 +89,30 @@ export class TimelineComponent implements OnInit {
   }
 
   //Ejecucion de un evento creado en sidebar.component
-  refresh(event){
+  refresh(event=null){
     this.getPublications(1);
   }
 
   //Mostrar una imagen
   showThisImage(id){
     this.showImage = id;
+  }
+
+  hideThisImage(id){
+    this.showImage = 0;
+  }
+
+  //Borrar una publicacion
+  deletePublication(id){
+    this._publicationService.deletePublication(this.token,id).subscribe(
+      response=>{
+        console.log(response);
+        this.refresh();
+      },
+      error=>{
+        console.log(<any>error);
+      }
+    )
   }
 
 }

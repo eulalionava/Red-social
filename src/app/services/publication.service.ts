@@ -40,6 +40,6 @@ export class PublicationService{
     let headers = new HttpHeaders().set('Content-Type','application/json')
                                     .set('Authorization',token);
 
-    return this._http.get(this.url+'publication/'+id,{headers:headers});
+    return this._http.delete(this.url+'publication/'+id,{headers:headers});
   }
 }

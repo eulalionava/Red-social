@@ -9,6 +9,8 @@ import { UserEditComponent } from './componets/user-edit/user-edit/user-edit.com
 import { UsersComponent } from './componets/users/users/users.component';
 import { TimelineComponent } from './componets/timeline/timeline/timeline.component';
 import { ProfileComponent } from './componets/profile/profile.component';
+import { FollowingComponent } from './componets/following/following.component';
+
 
 const appRoutes:Routes = [
   {path:'',component:HomeComponent},
@@ -19,7 +21,8 @@ const appRoutes:Routes = [
   {path:'gente',component:UsersComponent},
   {path:'gente/:page',component:UsersComponent},
   {path:'timeline',component:TimelineComponent},
-  {path:'perfil/:id',component:ProfileComponent}
+  {path:'perfil/:id',component:ProfileComponent},
+  {path:'siguiendo/:id/:page',component:FollowingComponent}
 
 
 ]

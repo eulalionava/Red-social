@@ -16,6 +16,7 @@ import { TimelineComponent } from './componets/timeline/timeline/timeline.compon
 import { MomentModule } from 'angular2-moment';
 import { PublicationsComponent } from './componets/publications/publications.component';
 import { ProfileComponent } from './componets/profile/profile.component';
+import { FollowingComponent } from './componets/following/following.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ProfileComponent } from './componets/profile/profile.component';
     SidebarComponent,
     TimelineComponent,
     PublicationsComponent,
-    ProfileComponent
+    ProfileComponent,
+    FollowingComponent
   ],
   imports: [
     BrowserModule,

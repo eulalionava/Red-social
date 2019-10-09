@@ -27,4 +27,15 @@ export class FollowService{
 
     return this._http.delete(this.url+'follow/'+id,{headers:headers});
   }
+
+  //Obtener los seguidores
+  getFollowing(token,userId=null,page=1){
+    let headers = new HttpHeaders().set('Content-Type','application/json')
+                                    .set('Authorization',token);
+    var url = this.url+'following';
+    if(userId != null){
+      url = this.url+'following/'+userId+'/'+page;
+    }
+    return this._http.get(this.url+'following/'+userId+'/'+page,{headers:headers});
+  }
 }
