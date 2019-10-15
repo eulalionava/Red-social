@@ -10,7 +10,7 @@ import { UsersComponent } from './componets/users/users/users.component';
 import { TimelineComponent } from './componets/timeline/timeline/timeline.component';
 import { ProfileComponent } from './componets/profile/profile.component';
 import { FollowingComponent } from './componets/following/following.component';
-
+import { FollowedComponent } from './componets/followed/followed.component';
 
 const appRoutes:Routes = [
   {path:'',component:HomeComponent},
@@ -22,7 +22,8 @@ const appRoutes:Routes = [
   {path:'gente/:page',component:UsersComponent},
   {path:'timeline',component:TimelineComponent},
   {path:'perfil/:id',component:ProfileComponent},
-  {path:'siguiendo/:id/:page',component:FollowingComponent}
+  {path:'siguiendo/:id/:page',component:FollowingComponent},
+  {path:'seguidores/:id/:page',component:FollowedComponent}
 
 
 ]

@@ -36,6 +36,17 @@ export class FollowService{
     if(userId != null){
       url = this.url+'following/'+userId+'/'+page;
     }
-    return this._http.get(this.url+'following/'+userId+'/'+page,{headers:headers});
+    return this._http.get(url,{headers:headers});
+  }
+
+  //Listado los seguidores
+  getFollowed(token,userId=null,page=1){
+    let headers = new HttpHeaders().set('Content-Type','application/json')
+                                    .set('Authorization',token);
+    var url = this.url+'followed';
+    if(userId != null){
+      url = this.url+'followed/'+userId+'/'+page;
+    }
+    return this._http.get(url,{headers:headers});
   }
 }
