@@ -18,6 +18,7 @@ import { PublicationsComponent } from './componets/publications/publications.com
 import { ProfileComponent } from './componets/profile/profile.component';
 import { FollowingComponent } from './componets/following/following.component';
 import { FollowedComponent } from './componets/followed/followed.component';
+import { MainComponent } from './messages/components/main/main.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { FollowedComponent } from './componets/followed/followed.component';
     PublicationsComponent,
     ProfileComponent,
     FollowingComponent,
-    FollowedComponent
+    FollowedComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
