@@ -1,0 +1,60 @@
+<div class="col-lg-10">
+    <h3>{{title}}</h3>
+    <div class="people" *ngIf="messages">
+
+        <!-- LISTADO -->
+        <div *ngFor="let message of messages" class="item-user">
+          <div class="card" *ngIf="message.emitter">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-2">
+                  <div class="image-user pull-left">
+                    <a href="#" >
+                      <img src="{{url + 'get-image-user/'+ message.emitter.image }}" alt="Imagen" *ngIf="message.emitter.image">
+                      <img src="../../../../assets/users.png" alt="Imagen" *ngIf="!message.emitter.image">
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-7">
+                  <div class="user-name pull-left">
+                    <p class="name-surname">
+                      <a [routerLink]="['/perfil',message.emitter._id]">
+                        {{message.emitter.name + ' ' + message.emitter.surname}}
+                      </a>
+                      |
+                      <span>{{message.emitter.nick}}</span>
+                      |
+                      <span class="date">{{(message.created_at | amFromUnix) | amLocale:'es' | amTimeAgo}}</span>
+                      <!-- |
+                      <span>Enviado a
+                        <a [routerLink]="['perfil',message.receiver._id]">
+                          {{ message.receiver.name + ' ' + message.receiver.surname}}
+                        </a>
+                      </span> -->
+
+                    </p>
+                  </div>
+                  {{ message.text }}
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <!-- PAGINACION -->
+        <ul class="pagination pull-right">
+          <li *ngIf="page > 1">
+            <a type="button" class="btn btn-default btn-sm" [routerLink]="['/mensajes/recibidos',prev_page]">
+              Anterior
+            </a>
+          </li>
+          <li *ngIf="pages != page">
+            <a type="button" class="btn btn-default btn-sm" [routerLink]="['/mensajes/recibidos',next_page]">
+              Siguiente
+            </a>
+          </li>
+        </ul>
+
+      </div>
+  </div>

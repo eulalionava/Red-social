@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 
 @Component({
   selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  templateUrl: './main.component.html'
 })
 export class MainComponent implements OnInit {
+  public title:string;
 
-  constructor() { }
+  constructor() {
+    this.title = 'Mensajes privados';
+   }
 
   ngOnInit() {
   }

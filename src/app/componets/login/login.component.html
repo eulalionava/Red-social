@@ -19,7 +19,7 @@
     </p>
     <p>
       <label for="">Contraseña</label>
-      <input type="email" name="password" #password="ngModel" [(ngModel)]="user.password"
+      <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password"
       class="form-control" required>
       <span *ngIf="!password.valid && password.touched">
         La contraseña es obligatoria

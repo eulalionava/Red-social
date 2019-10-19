@@ -4,6 +4,9 @@ import { routing,appRoutingProviders } from './app.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+//Modulo custom
+import { MessagesModule } from './messages/messages.module';
+
 //componentes
 import { AppComponent } from './app.component';
 import { LoginComponent } from './componets/login/login.component';
@@ -18,7 +21,10 @@ import { PublicationsComponent } from './componets/publications/publications.com
 import { ProfileComponent } from './componets/profile/profile.component';
 import { FollowingComponent } from './componets/following/following.component';
 import { FollowedComponent } from './componets/followed/followed.component';
-import { MainComponent } from './messages/components/main/main.component';
+
+//Servicios
+import { UserService } from './services/user.service';
+import { UserGuard } from './services/user.guard';
 
 @NgModule({
   declarations: [
@@ -33,18 +39,20 @@ import { MainComponent } from './messages/components/main/main.component';
     PublicationsComponent,
     ProfileComponent,
     FollowingComponent,
-    FollowedComponent,
-    MainComponent
+    FollowedComponent
   ],
   imports: [
     BrowserModule,
     routing,
     FormsModule,
     HttpClientModule,
-    MomentModule
+    MomentModule,
+    MessagesModule
   ],
   providers: [
-    appRoutingProviders
+    appRoutingProviders,
+    UserService,
+    UserGuard
   ],
   bootstrap: [AppComponent]
 })
